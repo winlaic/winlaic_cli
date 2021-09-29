@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [[ -z $1 ]]; then
+    for item in $(ls); do
+        echo $(pwd)/$item
+    done
+
+elif [[ -d $1 ]]; then
+    for item in $(ls $1); do
+        echo $(realpath $1)/$item
+    done
+elif [[ -f $1 ]]; then
+    echo $(pwd)/$1
+fi
+

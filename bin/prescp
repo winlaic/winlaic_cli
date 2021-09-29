@@ -1,0 +1,13 @@
+#!/bin/bash
+set -euo pipefail
+if [[ -z $1 ]]; then
+    echo No argument provided. >&2
+    exit 1
+fi
+
+if [[ -d $1 ]]; then
+    tar -cf $(realpath $1).tar $1
+    echo "scp $WINLAIC_DEVICE_NAME:"$(realpath $1).tar
+elif [[ -f $1 ]]; then
+    echo  "scp $WINLAIC_DEVICE_NAME:"$(realpath $1)
+fi
